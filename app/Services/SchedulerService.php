@@ -15,7 +15,7 @@ class SchedulerService
             $schedule_due = is_null($schedule->last_run_at) ||
                 $schedule->last_run_at->copy()->addMinutes($schedule->interval_minutes)->lte(now());
 
-            if (! $schedule_due) {
+            if (!$schedule_due) {
                 continue;
             }
 
