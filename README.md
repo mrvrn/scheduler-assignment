@@ -8,7 +8,8 @@
 </p>
 
 ## Commentaar voor Jan-Volkert:
-De CRUD is als JSON endpoints opgezet omdat de opdracht focust op backend-structuur en scheduling, niet op UI
+- De CRUD is als JSON endpoints opgezet omdat de opdracht focust op backend-structuur en scheduling, niet op UI.
+- Dit project is gemaakt met een nieuwere versie van Laravel waarbij Kernel niet meer werkt. Ik heb in routes/console.php de code gezet waardoor php artisan schedule:work het wel zal doen.
 
 
 ## About Laravel
