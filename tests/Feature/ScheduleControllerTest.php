@@ -9,7 +9,8 @@ use Tests\TestCase;
 
 class ScheduleControllerTest extends TestCase
 {
-     use RefreshDatabase;
+    use RefreshDatabase;
+    use WithFaker;
 
     public function test_index_returns_schedules(): void
     {
