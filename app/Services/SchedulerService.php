@@ -10,13 +10,16 @@ class SchedulerService
 {
     public function runDueSchedules(): void
     {
-        $schedules = Schedule::where('enabled', true)
-            ->where(function ($query) {
-                $query->whereNull('last_run_at')
-                    ->orWhere('last_run_at', '<=', DB::raw('DATE_SUB(NOW(), INTERVAL interval_minutes MINUTE)'));
-            })->get();
+        $schedules = Schedule::where('enabled', true)->get();
 
         foreach ($schedules as $schedule) {
+            $schedule_due = is_null($schedule->last_run_at) ||
+                $schedule->last_run_at->addMinutes($schedule->interval_minutes)->lte(now());
+
+            if (! $schedule_due) {
+                continue;
+            }
+            
             Artisan::call($schedule->command);
 
             $schedule->last_run_at = now();
